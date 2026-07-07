@@ -53,15 +53,25 @@ def main():
     window.title("Text Editor ABP - Untiled")
     
     # Configure grid weights
-    window.rowconfigure(0, minsize=400)
-    window.columnconfigure(1, minsize=500)
+    window.rowconfigure(0, weight= 1,minsize=400)
+    window.columnconfigure(1, weight= 1, minsize=500)
     
-    # Create text
-    text_edit = tk.Text(window, font="Helvetica 10 ")
-    text_edit.grid(row=0, column=1)
+    # Create text widget with scrollbar
+    text_frame = tk.Frame(window)
+    text_frame.grid(row=0, column=1, sticky="nsew")
+    text_frame.rowconfigure(0, weight=1)
+    text_frame.columnconfigure(0, weight=1)
     
-    # 
+    text_edit = tk.Text(text_frame, font="Helvetica 10", wrap=tk.WORD)
+    scrollbar = tk.Scrollbar(text_frame, command=text_edit.yview)
+    text_edit.configure(yscrollcommand=scrollbar.set)
+    
+    text_edit.grid(row=0, column=0, sticky="nsew")
+    scrollbar.grid(row=0, column=1, sticky="ns")
+    
+    #Create button frame 
     frame = tk.Frame(window, relief=tk.RAISED, bd=2)
+    frame.grid(row=0, column=0, sticky="ns", padx=5, pady=5)
     
     # Create Buttons
     new_file_button = tk.Button(
