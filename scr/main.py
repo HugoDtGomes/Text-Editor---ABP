@@ -1,4 +1,5 @@
 from files import open_file, save_file_as, new_file, save_file
+from text import find_text
 import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter import messagebox
@@ -73,6 +74,13 @@ def main():
         command=lambda: save_file_as(window, text_edit),
         width=10,
     )
+    # find text
+    find_text_button = tk.Button(
+        frame,
+        text="Find text",
+        command=lambda: find_text(window, text_edit),
+        width=10,
+    )
 
     exit_button = tk.Button(
         frame, text="🚪 Exit", command=lambda: on_closing(window, text_edit), width=10
@@ -83,9 +91,11 @@ def main():
     open_button.grid(row=1, column=0, padx=5, pady=5, sticky="ew")
     save_button.grid(row=2, column=0, padx=5, pady=5, sticky="ew")
     save_file_as_button.grid(row=3, column=0, padx=5, pady=5, sticky="ew")
-    exit_button.grid(row=4, column=0, padx=5, pady=5, sticky="ew")
+    find_text_button.grid(row=4, column=0, padx=5,pady=5, sticky="ew")#<=====
+    exit_button.grid(row=5, column=0, padx=5, pady=5, sticky="ew")
 
     # configure shortcuts
+    window.bind("<Control-n>", lambda x: new_file(window, text_edit))
     window.bind("<Control-s>", lambda x: save_file_as(window, text_edit))
     window.bind("<Control-o>", lambda x: open_file(window, text_edit))
     window.bind("<Control-w>", lambda x: window.quit())
