@@ -61,6 +61,9 @@ def find_text(window, text_edit):
     tk.Button(button_frame, text="Buscar", command= do_find, width=10).pack(side=tk.LEFT, padx=5)
     tk.Button(button_frame, text="Fechar", command= close_find, width=10).pack(side=tk.LEFT, padx=5) 
    
+    # Atalho Enter para buscar
+    search_entry.bind("<Return>", lambda e: do_find())
+    find_window.bind("<Escape>", lambda e: close_find())
 
 def replace_text(window, text):
     pass
