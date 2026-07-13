@@ -66,6 +66,19 @@ def find_text(window, text_edit):
     find_window.bind("<Escape>", lambda e: close_find())
 
 def replace_text(window, text):
+    find_window = Toplevel(window)
+    find_window.title("Substituir")
+    find_window.geometry("400x120")
+    find_window.resizable(False, False)
+    find_window.transient(window)  # Ficar acima da janela principal
+    find_window.grab_set() 
+    
+    #Widgets
+    tk.Label(find_window, text="Buscar").grid(row=0, column=0, padx=5, pady=5, sticky="e")
+    
+    search_entry = tk.Entry(find_window, width=50)
+    search_entry.grid(row=0, column=1, padx=5, pady=5)
+    search_entry.focus()
     pass
 
 def undo():
