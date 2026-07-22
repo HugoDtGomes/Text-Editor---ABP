@@ -83,7 +83,7 @@ def main():
     )
     replace_text_button = tk.Button(
         frame,
-        text="Substituir",
+        text="Replace",
         command=lambda: replace_text(window, text_edit),
         width=10,
     )

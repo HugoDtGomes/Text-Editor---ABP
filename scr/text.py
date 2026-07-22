@@ -10,7 +10,7 @@ def find_text(window, text_edit):
     find_window.grab_set() 
     
     #Widgets
-    tk.Label(find_window, text="Buscar").grid(row=0, column=0, padx=5, pady=5, sticky="e")
+    tk.Label(find_window, text="Search").grid(row=0, column=0, padx=5, pady=5, sticky="e")
     
     search_entry = tk.Entry(find_window, width=50)
     search_entry.grid(row=0, column=1, padx=5, pady=5)
@@ -44,9 +44,9 @@ def find_text(window, text_edit):
         if found_count > 0 :
             text_edit.mark_set("insert", "1.0")
             text_edit.see("1.0")
-            messagebox.showinfo("Busca", f"Encontrado {found_count} no texto") 
+            messagebox.showinfo("Find", f" {found_count} on text") 
         else:
-            messagebox.showinfo("Busca", "Texto nao encontrado")
+            messagebox.showinfo("Find", "Text not found")
     
     # fechar janela de busca
     def close_find():
@@ -58,27 +58,28 @@ def find_text(window, text_edit):
     button_frame = tk.Frame(find_window)
     button_frame.grid(row=1, column= 0, columnspan=2, pady=10)
     
-    tk.Button(button_frame, text="Buscar", command= do_find, width=10).pack(side=tk.LEFT, padx=5)
-    tk.Button(button_frame, text="Fechar", command= close_find, width=10).pack(side=tk.LEFT, padx=5) 
+    tk.Button(button_frame, text="Find", command= do_find, width=10).pack(side=tk.LEFT, padx=5)
+    tk.Button(button_frame, text="Close", command= close_find, width=10).pack(side=tk.LEFT, padx=5) 
    
     # Atalho Enter para buscar
     search_entry.bind("<Return>", lambda e: do_find())
     find_window.bind("<Escape>", lambda e: close_find())
 
 def replace_text(window, text):
-    find_window = Toplevel(window)
-    find_window.title("Substituir")
-    find_window.geometry("400x120")
-    find_window.resizable(False, False)
-    find_window.transient(window)  # Ficar acima da janela principal
-    find_window.grab_set() 
+    replace_text = Toplevel(window)
+    replace_text.title("Replace")
+    replace_text.resizable(False, False)
+    replace_text.geometry("400x120")
+    replace_text.transient(window)  # Ficar acima da janela principal
+    replace_text.grab_set() 
     
     #Widgets
-    tk.Label(find_window, text="Buscar").grid(row=0, column=0, padx=5, pady=5, sticky="e")
+    tk.Label(replace_text, text="Replace").grid(row=0, column=0, padx=5, pady=5, sticky="e")
     
-    search_entry = tk.Entry(find_window, width=50)
+    search_entry = tk.Entry(replace_text, width=50)
     search_entry.grid(row=0, column=1, padx=5, pady=5)
     search_entry.focus()
+    
     pass
 
 def undo():
